@@ -1,0 +1,47 @@
+Project techBookShelf {
+    database_type: 'mysql'
+    Note: '''
+     techBookShelf Database
+    '''
+}
+
+Table books {
+  id int [pk, increment]
+  publisher_id int [ref: > publishers.id]
+  isbn varchar [unique, note: 'ISBNコード']
+  title varchar [note: '書籍名']
+  author varchar [note: '筆者']
+  publish_date date [note: '出版日時']
+  image_url varchar [note: '画像URL']
+  description text [note: '概要']
+  price decimal [note: '価格']
+}
+
+// 本とジャンルの多対多の関係
+// ジャンルとは、PHP, Rust, 設計,,,などの細かい分類を指す
+Table genres {
+  id int [pk, increment] // 主キーと自動増加
+  name varchar [note: 'ジャンル名']
+}
+
+Table book_genre {
+  book_id int [ref: > books.id]
+  genre_id int [ref: > genres.id]
+}
+
+Table publishers {
+  id int [pk, increment]
+  name varchar [note: '出版社名']
+}
+
+// 本とカテゴリの多対多の関係
+// ジャンルとは異なり、IT, コンピューターなどの大雑把なカテゴリを指す
+Table category {
+  id int [pk, increment]
+  name varchar [note: 'カテゴリー名']
+}
+
+Table book_category {
+  book_id int [ref: > books.id]
+  category_id int [ref: > category.id]
+}
