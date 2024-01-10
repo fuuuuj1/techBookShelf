@@ -23,9 +23,6 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->dateTime('published_date');
             $table->timestamps();
-
-            // 出版社idに外部キー制約を付与 出版社テーブルがまだないのでコメントアウト
-            // $table->foreign('publisher_id')->references('id')->on('publishers');
         });
     }
 

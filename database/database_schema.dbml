@@ -36,12 +36,12 @@ Table publishers {
 
 // 本とカテゴリの多対多の関係
 // ジャンルとは異なり、IT, コンピューターなどの大雑把なカテゴリを指す
-Table category {
+Table categories {
   id int [pk, increment]
   name varchar [note: 'カテゴリー名']
 }
 
 Table book_category {
   book_id int [ref: > books.id]
-  category_id int [ref: > category.id]
+  category_id int [ref: > categories.id]
 }
